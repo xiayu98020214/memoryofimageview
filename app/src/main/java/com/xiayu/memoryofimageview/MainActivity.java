@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 /*http://blog.csdn.net/lsyz0021/article/details/51356670*/
 /*https://developer.android.com/topic/performance/graphics/load-bitmap.html#read-bitmap*/
@@ -20,19 +22,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button button  = (Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                img.setImageBitmap(
+                        decodeSampledBitmapFromResource(getResources(), R.drawable.im_guide_4, 200, 300));
+                printBitmapSize(img);
+
+            }
+        });
         img = (ImageView)findViewById(R.id.image);
         Log.e(TAG, "im"+ img);
-        img.setImageBitmap(
-                decodeSampledBitmapFromResource(getResources(), R.id.image, 200, 300));
+
       //  img.setImageResource(R.drawable.dplan);
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-       // printBitmapSize(img);
+        printBitmapSize(img);
 
-   /*     img.setImageBitmap(
+/*        img.setImageBitmap(
                 decodeSampledBitmapFromResource(getResources(), R.id.image, 100, 100));*/
 
         //printBitmapSize(img);
@@ -95,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Calculate inSampleSize
         options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        Log.d(TAG, "decodeSampledBitmapFromResource:inSampleSize "+options.inSampleSize);
 
         // Decode bitmap with inSampleSize set
         options.inJustDecodeBounds = false;
