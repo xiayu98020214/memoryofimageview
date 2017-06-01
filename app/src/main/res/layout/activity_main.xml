@@ -14,9 +14,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />-->
-    <ImageView
+<!--    <ImageView
         android:id="@+id/image"
         android:src="@drawable/bonus_bg2_used"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />-->
+
+    <ImageView
+        android:id="@+id/image"
+        android:src="@drawable/im_guide_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
